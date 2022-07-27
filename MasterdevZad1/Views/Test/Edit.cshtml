@@ -1,0 +1,39 @@
+﻿@model Klienci
+
+<form method="post" asp-action="Edit">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edycja</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Surname"></label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PESEL"></label>
+            <input asp-for="PESEL" class="form-control" />
+            <span asp-validation-for="PESEL" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">OK</button>
+        <a asp-controller="Test" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Powrót
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
+
+
+

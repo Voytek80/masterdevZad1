@@ -1,0 +1,26 @@
+﻿@model Currency
+<form method="post" asp-controller="Home" asp-action="Zadanie5wynik">
+<div class="border p-3 mt-4">
+    <div class="row pb-2">
+            <h2 class="text-primary">Zadanie 5</h2>
+            <hr />
+    </div>
+    <div>
+
+        <label asp-for="zlotowki">PLN</label>
+        <input asp-for="zlotowki" value="500" class="form-control" />
+        <br /><br />
+        <button type="submit" class="btn btn-primary" style="width:150px">Przelicz na USD</button>
+        
+
+    </div>
+    
+    <br /><br />Aktualna cena dolara amerykańskiego według kursu NBP to
+    @ViewBag.stronka
+    <br /><br />
+    <br /><br />
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Powrót
+        </a>
+</div>
+</form>

@@ -3,6 +3,100 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Praktyki w Masterdev</h1>
+    
 </div>
+<table class="table table-striped" style="width:100%">
+    <tr>
+        <td>
+            <h3>Zadanie 1</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+            <div class="text-center">
+            <a asp-controller="Test" asp-action="Index" class="btn btn-primary mx-2">
+                Zadanie 1
+            </a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h3>Zadanie 2</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Napisz program, który odczyta z dysku plik tekstowy z dowolną treścią. Plik powinien znajdować się w lokalizacji "C:/test/".
+            Nazwa pliku: test_XXX_YYY.txt, gdzie XXX to Twoje imię, a YYY to Twoje nazwisko. Imię i nazwisko powinno być zapisane bez polskich znaków małymi literami.
+            Jeśli długość nazwy pliku będzie większa niż 15 znaków to skróć imię i nazwisko do pierwszych trzech znaków. Wyświetl na ekranie ilość występowania w pliku litery "a".
+            <hr />
+            <div class="text-center">
+            <a asp-controller="Home" asp-action="Zadanie2" class="btn btn-primary mx-2">
+                Zadanie 2
+            </a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h3>Zadanie 3</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Napisz program, który odczyta z dysku dowolny plik tekstowy z dowolnym tekstem w którym będzie występowało 5 razy słowo klucz "praca".
+            Znajdź i zamień w pliku słowo "praca" na "job". Zapisz zmiany w pliku na dysku dodając do nazwy oryginalnego pliku postfix "_changed" oraz po myślniku
+            bieżącą datę bez godziny usuwając z niej myślniki.
+            <hr />
+            <div class="text-center">
+            <a asp-controller="Home" asp-action="Zadanie3" class="btn btn-primary mx-2">
+                Zadanie 3
+            </a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h3>Zadanie 4</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Napisz program, który wygeneruje i zapisze do pliku CSV dane 100 fikcyjnych użytkowników. W każdej linii niech pojawią się dane:
+            <ul>
+                <li>LP - liczba porządkowa</li>
+                <li>Imię - wybrane losowo z puli Ania, Kasia, Basia, Zosia.</li>
+                <li>Nazwisko - wybrane losowo z puli Kowalska, Nowak.</li>
+                <li>Rok urodzenia - losowy od 1990 do 2000</li>
+            </ul>
+            W pierwszym wierszu pliku CSV powinny znaleźć się nazwy kolumn. Przy każdym generowaniu plik powinien się generować w ścieżce jak w pierwszym zadaniu pod nazwą 
+            "users-XXX.txt" gdzie XXX to bieżąca data razem z godziną z podkreśleniami zamiast myślników i dwukropków.
+            <hr />
+            <div class="text-center">
+            <a asp-controller="Home" asp-action="Zadanie4" class="btn btn-primary mx-2">
+                Zadanie 4
+            </a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h3>Zadanie 5</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Napisz program, który poprosi użytkownika o kwotę w walucie PLN, następnie dokona konwersji do waluty USD oraz wyświetli kwotę na ekranie. Konwersja powinna
+            wykorzystywać bieżący i aktualny kurs wymiany PLN na USD.
+            <hr />
+            <div class="text-center">
+            <a asp-controller="Home" asp-action="Zadanie5" class="btn btn-primary mx-2">
+                Zadanie 5
+            </a>
+            </div>
+        </td>
+    </tr>
+</table>

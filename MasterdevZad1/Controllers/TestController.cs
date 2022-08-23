@@ -1,7 +1,10 @@
-﻿using MasterdevZad1.Data;
+﻿using ClosedXML.Excel;
+using MasterdevZad1.Data;
 using MasterdevZad1.Models;
 using MasterdevZad1.Pesel;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using System.Text;
 
 namespace MasterdevZad1.Controllers
 {
@@ -121,6 +124,58 @@ namespace MasterdevZad1.Controllers
             
             
 
+        }
+        //GET
+        public IActionResult Export()
+        {
+            return View();
+        }
+        //POST
+        
+        public IActionResult ExportCSV()
+        {
+            IEnumerable<Klienci> objKlienciList = _db.Klienci;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("Name,Surname,Pesel,Rok urodzenia,Płeć");
+            foreach (var row in objKlienciList)
+            {
+                stringBuilder.AppendLine($"{row.Name},{row.Surname},{row.PESEL},{row.BirthYear},{row.Płeć}");
+            }
+            return File(System.Text.Encoding.UTF8.GetBytes(stringBuilder.ToString()), "text/csv", "DatabaseToCSVExport.csv");
+        }
+        public IActionResult ExportXLSX()
+        {
+
+            IEnumerable<Klienci> objKlienciList = _db.Klienci;
+            var workbook = new XLWorkbook();
+            var ws = workbook.Worksheets.Add("Klienci");
+            ws.Cell(2, 1).Value = "Name";
+            ws.Cell(2, 2).Value = "Surname";
+            ws.Cell(2, 3).Value = "PESEL";
+            ws.Cell(2, 4).Value = "BirthYear";
+            ws.Cell(2, 5).Value = "Płeć";
+
+            int i = 3;
+            foreach(var row in objKlienciList)
+            {
+                ws.Cell(i, 1).Value = row.Name;
+                ws.Cell(i, 2).Value = row.Surname;
+                ws.Cell(i, 3).Value = row.PESEL;
+                ws.Cell(i, 4).Value = row.BirthYear;
+                ws.Cell(i, 5).Value = row.Płeć;
+                i = i + 1;
+            }
+            var stream = new MemoryStream();
+            workbook.SaveAs(stream);
+            var content = stream.ToArray();
+            return File(content, "application/vnd.openxmlformats-officedocument-spreadsheetml.sheet", "Klienci.xlsx"); 
+        }
+
+        public IActionResult Import()
+        {
+            
+            System.IO.File.ReadAllText(@"C:\Test\test_WOJ_MIE.txt");
+            return View();
         }
     }
 }

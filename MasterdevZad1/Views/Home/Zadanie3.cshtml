@@ -1,0 +1,18 @@
+﻿<div class="border p-3 mt-4">
+    <div class="row pb-2">
+            <h2 class="text-primary">Zadanie 3</h2>
+            <h5 class="text-primary">Tekst z pliku "C:\Test\praca.txt"</h5>
+            @ViewBag.praca
+            
+            <hr />
+    </div>
+    <div>
+        <h5 class="text-primary">Tekst po zmianie "praca" na "job". Zapisane do pliku @ViewBag.jobfilename</h5>
+        @ViewBag.job
+    </div>
+    <br /><br />
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Powrót
+        </a>
+</div>
+

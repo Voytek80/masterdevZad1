@@ -1,4 +1,6 @@
-﻿<div class="border p-3 mt-4">
+﻿@model ImportFile
+<form method="post" asp-controller="Test" asp-action="Import" enctype="multipart/form-data">
+<div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">Importuj</h2>
             <hr />
@@ -19,8 +21,20 @@
                 Importuj z pliku Excel
             </a>
             </div>
+            
+
         </div>
-        <a asp-controller="Test" asp-action="Index" class="btn btn-secondary" style="width:150px">
-            Powrót
+        <div>
+                <label  class="col-sm-2 col-form-label"></label>
+                <div class="custom-file">
+                    <input asp-for="Plik" class="form-control custom-file-input" />
+                    <label class="custom-file-label"></label>
+                </div>
+        </div>
+        <button asp-controller="Test" asp-action="Import" type="submit" class="btn btn-primary" style="width:150px">Zatwierdź</button>
+        <a asp-controller="Test" asp-action="Import" class="btn btn-secondary" style="width:150px">
+            Dodaj Plik
         </a>
-    </div>
+        @ViewBag.Plik
+ </div>
+ </form>

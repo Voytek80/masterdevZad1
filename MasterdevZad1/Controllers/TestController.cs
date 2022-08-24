@@ -1,10 +1,12 @@
 ﻿using ClosedXML.Excel;
+using ExcelDataReader;
 using MasterdevZad1.Data;
 using MasterdevZad1.Models;
 using MasterdevZad1.Pesel;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Text;
+using System.IO;
 
 namespace MasterdevZad1.Controllers
 {
@@ -174,8 +176,68 @@ namespace MasterdevZad1.Controllers
         public IActionResult Import()
         {
             
-            System.IO.File.ReadAllText(@"C:\Test\test_WOJ_MIE.txt");
+            
             return View();
+        }
+        [HttpPost]
+        public IActionResult Import(ImportFile obj, Klienci baza)
+        {
+            if (obj.Plik == null)
+            {
+                ViewBag.Plik = "Pusty";
+            }
+            else 
+            {
+                string nazwa_pliku = obj.Plik.FileName;
+                if (nazwa_pliku.Contains(".csv"))
+                {
+                    ViewBag.Plik = obj.Plik.FileName;
+                    var reader = new StreamReader(obj.Plik.OpenReadStream());
+
+                    string row;
+                    List<Klienci> deps = new List<Klienci>();
+
+                    while ((row = reader.ReadLine()) != null)
+                    {
+                        string[] element = row.Split(",");
+                        deps.Add(new Klienci { Name = element[0], Surname = element[1], PESEL = element[2], BirthYear = Convert.ToInt32(element[3]), Płeć = Convert.ToInt32(element[4]) });
+                    }
+                    _db.Klienci.AddRange(deps);
+                    _db.SaveChanges();
+                }
+                else if (nazwa_pliku.Contains(".xlsx"))
+                {
+                    System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+                    
+                    var sdf = obj.Plik.OpenReadStream();
+
+
+                    var reader = ExcelReaderFactory.CreateReader(sdf);
+                    List<Klienci> deps = new List<Klienci>();
+
+                    reader.Read();
+                    ViewBag.Plik = reader.GetValue(0);
+                    //while (reader.Read()) //Each row of the file
+                    //{
+
+
+                    //    deps.Add(new Klienci { Name = reader.GetValue(0).ToString(), Surname = reader.GetValue(1).ToString(), PESEL = reader.GetValue(2).ToString(), BirthYear = Convert.ToInt32(reader.GetValue(3).ToString()), Płeć = Convert.ToInt32(reader.GetValue(4).ToString()) });
+
+                    //}
+                    //_db.Klienci.AddRange(deps);
+                    //_db.SaveChanges();
+                }
+                else ViewBag.Plik = "Nieprawidłowy plik";
+
+
+
+                //return RedirectToAction("Index");
+
+
+            }
+
+
+            return View(obj);
         }
     }
 }

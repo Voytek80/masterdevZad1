@@ -196,7 +196,7 @@ namespace MasterdevZad1.Controllers
 
                     string row;
                     List<Klienci> deps = new List<Klienci>();
-
+                    row = reader.ReadLine();
                     while ((row = reader.ReadLine()) != null)
                     {
                         string[] element = row.Split(",");
@@ -204,6 +204,7 @@ namespace MasterdevZad1.Controllers
                     }
                     _db.Klienci.AddRange(deps);
                     _db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
                 else if (nazwa_pliku.Contains(".xlsx"))
                 {
@@ -216,22 +217,25 @@ namespace MasterdevZad1.Controllers
                     List<Klienci> deps = new List<Klienci>();
 
                     reader.Read();
-                    ViewBag.Plik = reader.GetValue(0);
-                    //while (reader.Read()) //Each row of the file
-                    //{
+                    reader.Read();
+                    
+                    //ViewBag.Plik = reader.GetValue(0);
+                    while (reader.Read()) //Each row of the file
+                    {
 
 
-                    //    deps.Add(new Klienci { Name = reader.GetValue(0).ToString(), Surname = reader.GetValue(1).ToString(), PESEL = reader.GetValue(2).ToString(), BirthYear = Convert.ToInt32(reader.GetValue(3).ToString()), Płeć = Convert.ToInt32(reader.GetValue(4).ToString()) });
+                        deps.Add(new Klienci { Name = reader.GetValue(0).ToString(), Surname = reader.GetValue(1).ToString(), PESEL = reader.GetValue(2).ToString(), BirthYear = Convert.ToInt32(reader.GetValue(3).ToString()), Płeć = Convert.ToInt32(reader.GetValue(4).ToString()) });
 
-                    //}
-                    //_db.Klienci.AddRange(deps);
-                    //_db.SaveChanges();
+                    }
+                    _db.Klienci.AddRange(deps);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                else ViewBag.Plik = "Nieprawidłowy plik";
+                else ModelState.AddModelError("Plik", "Nieprawidłowy plik");
 
 
 
-                //return RedirectToAction("Index");
+
 
 
             }

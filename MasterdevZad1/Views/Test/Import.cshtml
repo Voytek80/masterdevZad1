@@ -12,6 +12,7 @@
             
 
         </div>
+
         <div>
                 <label  class="col-sm-2 col-form-label"></label>
                 <div class="custom-file">
@@ -22,5 +23,8 @@
         <button asp-controller="Test" asp-action="Import" type="submit" class="btn btn-primary" style="width:150px">Zatwierdź</button>
         
         @ViewBag.Plik
+        <a asp-controller="Test" asp-action="Index" class="btn btn-secondary float-end" style="width:150px">
+            Powrót
+        </a>
  </div>
  </form>

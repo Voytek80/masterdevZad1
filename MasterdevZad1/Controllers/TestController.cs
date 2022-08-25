@@ -184,7 +184,7 @@ namespace MasterdevZad1.Controllers
         {
             if (obj.Plik == null)
             {
-                ViewBag.Plik = "Pusty";
+                ViewBag.Plik = "Wybierz plik";
             }
             else 
             {
@@ -231,7 +231,7 @@ namespace MasterdevZad1.Controllers
                     _db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                else ModelState.AddModelError("Plik", "Nieprawidłowy plik");
+                else ViewBag.Plik = "Nieprawidłowy plik";
 
 
 
